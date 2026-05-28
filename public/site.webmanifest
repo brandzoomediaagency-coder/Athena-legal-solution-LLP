@@ -1,0 +1,13 @@
+{
+  "name": "Athena Legal Solution LLP",
+  "short_name": "Athena Legal",
+  "description": "Loan Settlement & Legal Advisory Support",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#061A2B",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

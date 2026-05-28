@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #061a2b;
+  --color-gold: #c8a21a;
+  --color-emerald: #0c7c59;
+  --color-slate: #e8eef4;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: #061a2b;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Padding for sticky mobile CTA */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 60px;
+  }
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #c8a21a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background: #c8a21a;
+  color: #061a2b;
+}
+
+/* Prose-style content for legal/blog pages */
+.prose-athena {
+  color: rgba(6, 26, 43, 0.82);
+  line-height: 1.75;
+}
+.prose-athena h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  color: #061a2b;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose-athena h3 {
+  font-family: var(--font-playfair), Georgia, serif;
+  color: #061a2b;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-athena p {
+  margin-bottom: 1rem;
+}
+.prose-athena ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+.prose-athena ul li {
+  margin-bottom: 0.35rem;
+}
+.prose-athena a {
+  color: #9a7c12;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-athena strong {
+  color: #061a2b;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Animation utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealUp 0.7s ease-out forwards;
+}
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
