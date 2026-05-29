@@ -7,6 +7,25 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
   },
+
+  async redirects() {
+    return [
+      // High-level renames
+      { source: '/about', destination: '/about-us', permanent: true },
+      { source: '/services', destination: '/practice-areas', permanent: true },
+      { source: '/faq', destination: '/faqs', permanent: true },
+      { source: '/contact', destination: '/contact-us', permanent: true },
+
+      // Old service-slug routes → new flat URLs
+      { source: '/services/personal-loan-settlement', destination: '/loan-settlement', permanent: true },
+      { source: '/services/business-loan-settlement', destination: '/loan-settlement', permanent: true },
+      { source: '/services/credit-card-settlement', destination: '/credit-card-settlement', permanent: true },
+      { source: '/services/recovery-agent-harassment-support', destination: '/recovery-agent-harassment', permanent: true },
+      { source: '/services/legal-notice-assistance', destination: '/legal-notice-loan-default', permanent: true },
+      { source: '/services/debt-resolution-advisory', destination: '/debt-resolution', permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

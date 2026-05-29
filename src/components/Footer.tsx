@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/lib/site';
-import { services } from '@/lib/services';
+import { practiceAreasMain, loanDebtServices } from '@/lib/practiceAreas';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -18,72 +18,55 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
-              {siteConfig.tagline}. Legal and financial advisory support for borrowers
-              navigating loan settlement, credit card dues, recovery concerns and legal
-              notices.
+              {siteConfig.tagline}. Comprehensive legal consultation, documentation support,
+              dispute resolution guidance, and financial legal advisory for individuals,
+              families and businesses across Delhi NCR and pan-India.
             </p>
             <div className="mt-5 flex items-center gap-3">
-              <a
-                href={siteConfig.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold"
-              >
+              <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold">
                 <span className="text-xs font-semibold">in</span>
               </a>
-              <a
-                href={siteConfig.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold"
-              >
+              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold">
                 <span className="text-xs font-semibold">f</span>
               </a>
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold"
-              >
+              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-gold hover:text-gold">
                 <span className="text-xs font-semibold">ig</span>
               </a>
-              <a
-                href={siteConfig.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-emerald-accent hover:text-emerald-accent"
-              >
+              <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="rounded-full border border-white/15 p-2 text-white/80 transition hover:border-emerald-accent hover:text-emerald-accent">
                 <span className="text-xs font-semibold">wa</span>
               </a>
             </div>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
-              Quick Links
+              Practice Areas
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link href="/about" className="hover:text-gold">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-gold">Services</Link></li>
-              <li><Link href="/blog" className="hover:text-gold">Blog</Link></li>
-              <li><Link href="/faq" className="hover:text-gold">FAQ</Link></li>
-              <li><Link href="/contact" className="hover:text-gold">Contact</Link></li>
+              {practiceAreasMain.slice(0, 8).map((p) => (
+                <li key={p.slug}>
+                  <Link href={p.path} className="hover:text-gold">
+                    {p.shortTitle}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/practice-areas" className="font-semibold text-gold hover:underline">
+                  View all →
+                </Link>
+              </li>
             </ul>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
-              Services
+              Loan & Debt
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
-              {services.map((s) => (
-                <li key={s.slug}>
-                  <Link href={`/services/${s.slug}`} className="hover:text-gold">
-                    {s.shortTitle}
+              {loanDebtServices.map((p) => (
+                <li key={p.slug}>
+                  <Link href={p.path} className="hover:text-gold">
+                    {p.shortTitle}
                   </Link>
                 </li>
               ))}
@@ -97,22 +80,16 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <span className="block text-white/60">Phone</span>
-                <a href={siteConfig.phoneHref} className="hover:text-gold">
-                  {siteConfig.phone}
-                </a>
+                <a href={siteConfig.phoneHref} className="hover:text-gold">{siteConfig.phone}</a>
               </li>
               <li>
                 <span className="block text-white/60">Email</span>
-                <a href={siteConfig.emailHref} className="break-all hover:text-gold">
-                  {siteConfig.email}
-                </a>
+                <a href={siteConfig.emailHref} className="break-all hover:text-gold">{siteConfig.email}</a>
+                <a href={siteConfig.altEmailHref} className="mt-1 block break-all text-white/60 hover:text-gold">{siteConfig.altEmail}</a>
               </li>
               <li>
-                <span className="block text-white/60">Address</span>
-                <span>
-                  {siteConfig.address.street}, {siteConfig.address.locality},{' '}
-                  {siteConfig.address.region} {siteConfig.address.postalCode}
-                </span>
+                <span className="block text-white/60">Location</span>
+                <span>{siteConfig.address.locality}, {siteConfig.address.region}</span>
               </li>
               <li>
                 <span className="block text-white/60">Hours</span>
@@ -125,10 +102,11 @@ export default function Footer() {
         <div className="mt-12 border-t border-white/10 pt-6">
           <p className="text-xs leading-relaxed text-white/55">
             <strong className="text-white/80">Disclaimer:</strong> Athena Legal Solution LLP
-            provides legal and financial advisory support. Information on this website is for
-            general awareness and consultation purposes only. Outcomes in settlement or
-            dispute matters depend on lender policies, documents, case facts, applicable law,
-            and approvals. No result is guaranteed.
+            provides legal consultation, documentation support, dispute resolution guidance,
+            and legal advisory assistance. Information on this website is for general
+            awareness and consultation purposes only. Outcomes depend on facts, documents,
+            applicable law, authority/court/lender policies, and case-specific circumstances.
+            No result is guaranteed.
           </p>
           <div className="mt-6 flex flex-col items-start justify-between gap-3 text-xs text-white/55 md:flex-row md:items-center">
             <p>© {year} Athena Legal Solution LLP. All rights reserved.</p>

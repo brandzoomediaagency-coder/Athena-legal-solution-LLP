@@ -1,9 +1,9 @@
-import { siteConfig } from '@/lib/site';
+import { siteConfig, serviceAreas } from '@/lib/site';
 
 export function OrganizationLd() {
   const data = {
     '@context': 'https://schema.org',
-    '@type': ['Organization', 'LegalService'],
+    '@type': ['Organization', 'LegalService', 'LocalBusiness'],
     '@id': `${siteConfig.url}#organization`,
     name: siteConfig.name,
     legalName: siteConfig.name,
@@ -14,16 +14,35 @@ export function OrganizationLd() {
     slogan: siteConfig.tagline,
     telephone: siteConfig.phone,
     email: siteConfig.email,
+    priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: siteConfig.address.street,
-      addressLocality: siteConfig.address.locality,
-      addressRegion: siteConfig.address.region,
+      streetAddress: `${siteConfig.address.locality}, ${siteConfig.address.sub}`,
+      addressLocality: siteConfig.address.region,
+      addressRegion: siteConfig.address.state,
       postalCode: siteConfig.address.postalCode,
       addressCountry: siteConfig.address.country,
     },
-    areaServed: { '@type': 'Country', name: 'India' },
-    openingHours: 'Mo-Sa 10:00-19:00',
+    areaServed: serviceAreas.map((name) => ({ '@type': 'AdministrativeArea', name })),
+    openingHours: siteConfig.hoursMachine,
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '17:00',
+      },
+    ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: siteConfig.phone,
+        contactType: 'customer service',
+        areaServed: 'IN',
+        availableLanguage: ['en', 'hi'],
+        email: siteConfig.email,
+      },
+    ],
     sameAs: [
       siteConfig.social.linkedin,
       siteConfig.social.facebook,

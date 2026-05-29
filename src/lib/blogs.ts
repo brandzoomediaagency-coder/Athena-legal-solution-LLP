@@ -1,8 +1,20 @@
+export type BlogCategory =
+  | 'Civil Law'
+  | 'Criminal Law'
+  | 'Family Law'
+  | 'Property Law'
+  | 'Cheque Bounce'
+  | 'Consumer Law'
+  | 'Corporate Law'
+  | 'Legal Notices'
+  | 'Loan & Debt Support'
+  | 'Borrower Rights';
+
 export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
-  category: 'Loan Settlement' | 'Credit Cards' | 'Borrower Rights' | 'Legal Notices' | 'Guides';
+  category: BlogCategory;
   readTime: string;
   publishedAt: string;
   metaTitle: string;
@@ -10,13 +22,232 @@ export type BlogPost = {
   body: Array<{ heading: string; paragraphs: string[]; bullets?: string[] }>;
 };
 
+export const blogCategories: BlogCategory[] = [
+  'Civil Law',
+  'Criminal Law',
+  'Family Law',
+  'Property Law',
+  'Cheque Bounce',
+  'Consumer Law',
+  'Corporate Law',
+  'Legal Notices',
+  'Loan & Debt Support',
+  'Borrower Rights',
+];
+
 export const blogPosts: BlogPost[] = [
+  // ── New broad-legal posts ──────────────────────────────────────────────
+  {
+    slug: 'what-to-do-after-receiving-a-legal-notice-in-india',
+    title: 'What to Do After Receiving a Legal Notice in India',
+    excerpt:
+      'A calm, structured guide on the first hours after a legal notice arrives — what to preserve, what to avoid, and how to plan the response.',
+    category: 'Legal Notices',
+    readTime: '7 min read',
+    publishedAt: '2026-04-22',
+    metaTitle: 'Received a Legal Notice in India? Here\'s What to Do Next',
+    metaDescription:
+      'Step-by-step guidance on what to do after receiving a legal notice in India — documentation, deadlines, and structured response planning.',
+    body: [
+      {
+        heading: 'Treat the notice as time-sensitive',
+        paragraphs: [
+          'A legal notice is a formal communication that almost always carries a deadline — explicit or implied. The most common mistake is ignoring it. The second most common is responding informally in the moment.',
+        ],
+      },
+      {
+        heading: 'Preserve everything',
+        paragraphs: [
+          'The original notice, the envelope, courier slip, and the date of receipt all matter. Do not throw any of them away.',
+        ],
+        bullets: [
+          'Photograph the envelope and the notice',
+          'Note the date and time of receipt',
+          'Do not reply on WhatsApp or by phone without legal review',
+          'Identify the sender and any deadlines mentioned',
+        ],
+      },
+      {
+        heading: 'Get a documented review',
+        paragraphs: [
+          'A structured legal review will identify what is being claimed, what supporting documents the sender relies on, what the implicit timeline is, and what the right tone of reply should be.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cheque-bounce-section-138-important-steps',
+    title: 'Cheque Bounce Case: Important Steps Under NI Act Section 138',
+    excerpt:
+      'A practical guide to the procedural framework around dishonoured cheques — statutory notices, timelines, and the realistic path forward.',
+    category: 'Cheque Bounce',
+    readTime: '8 min read',
+    publishedAt: '2026-04-26',
+    metaTitle: 'Cheque Bounce — Section 138 NI Act Steps Explained',
+    metaDescription:
+      'Understand the procedural steps in a cheque bounce / Section 138 NI Act matter — notice, reply, complaint, and the realistic timeline.',
+    body: [
+      {
+        heading: 'Why Section 138 is time-bound',
+        paragraphs: [
+          'Section 138 of the Negotiable Instruments Act creates a statutory framework with strict deadlines from the date a cheque is returned. Acting quickly is essential — both for payees and drawers.',
+        ],
+      },
+      {
+        heading: 'The core sequence',
+        paragraphs: [
+          'In broad terms, the matter moves through the cheque-return memo, a statutory demand notice within the prescribed window, a period for payment, and then a complaint filing if the demand goes unmet.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'documents-for-a-property-dispute-consultation',
+    title: 'How to Prepare Documents for a Property Dispute Consultation',
+    excerpt:
+      'The papers that meaningfully change a property consultation — and the ones that just take up time. A practical checklist.',
+    category: 'Property Law',
+    readTime: '5 min read',
+    publishedAt: '2026-04-30',
+    metaTitle: 'Documents to Carry to a Property Dispute Consultation',
+    metaDescription:
+      'A clear, practical checklist of property documents that meaningfully change a legal consultation — title chain, possession, communication, and notices.',
+    body: [
+      {
+        heading: 'Why papers matter more than narrative',
+        paragraphs: [
+          'Most property disputes turn on what the papers actually say — not on what was promised verbally. Preparing the documentation before a consultation is the highest-leverage thing a client can do.',
+        ],
+        bullets: [
+          'Sale deed and chain-of-title documents',
+          'Mutation records, Index II, property tax receipts',
+          'Possession evidence (letters, photographs, utility bills)',
+          'Builder communication, allotment letters, agreements',
+          'Earlier notices and replies',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'mutual-divorce-vs-contested-divorce',
+    title: 'Mutual Divorce vs Contested Divorce: Basic Differences',
+    excerpt:
+      'A grounded explanation of the two routes — what each requires, where they diverge, and how to think about the choice.',
+    category: 'Family Law',
+    readTime: '6 min read',
+    publishedAt: '2026-05-03',
+    metaTitle: 'Mutual vs Contested Divorce in India — Basic Differences',
+    metaDescription:
+      'Understand the differences between mutual consent and contested divorce in India — requirements, timelines, and key practical considerations.',
+    body: [
+      {
+        heading: 'Mutual consent',
+        paragraphs: [
+          'A mutual consent route requires both spouses to agree on the divorce itself and on terms relating to maintenance, custody, and any settlement. It is generally faster and less adversarial.',
+        ],
+      },
+      {
+        heading: 'Contested route',
+        paragraphs: [
+          'A contested matter proceeds where one spouse seeks dissolution and the other contests it, or where the terms cannot be agreed. The timeline is longer and the documentation deeper.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'when-should-a-business-send-a-legal-notice',
+    title: 'When Should a Business Send a Legal Notice?',
+    excerpt:
+      'For business owners — when does a legal notice protect your position, and when is it just noise that hardens the dispute?',
+    category: 'Corporate Law',
+    readTime: '5 min read',
+    publishedAt: '2026-05-08',
+    metaTitle: 'When Should a Business Send a Legal Notice? — Practical Guide',
+    metaDescription:
+      'Practical guidance for business owners on when to send a legal notice — protecting your position versus hardening the dispute.',
+    body: [
+      {
+        heading: 'When a notice helps',
+        paragraphs: [
+          'A notice creates a documented record, formally crystallises the demand, and often unlocks otherwise stuck conversations. It is most effective when the underlying contract and communication trail support it.',
+        ],
+      },
+      {
+        heading: 'When it hurts',
+        paragraphs: [
+          'Premature notices can harden positions, end commercial conversations, and signal a willingness to litigate that you may not actually want.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'consumer-complaint-process-india-basic-guide',
+    title: 'Consumer Complaint Process in India: Basic Guide',
+    excerpt:
+      'An accessible overview of how a consumer complaint moves — from a pre-complaint notice to forum filing and orders.',
+    category: 'Consumer Law',
+    readTime: '6 min read',
+    publishedAt: '2026-05-11',
+    metaTitle: 'Consumer Complaint Process in India — Basic Guide',
+    metaDescription:
+      'A clear, basic overview of the consumer complaint process in India — notice, complaint filing, hearings, and possible orders.',
+    body: [
+      {
+        heading: 'A short, structured overview',
+        paragraphs: [
+          'The consumer protection framework provides for tiered forums based on the value of the dispute, supports time-bound resolution, and allows compensation, replacement, refund, and other reliefs.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'bail-consultation-documents-and-first-steps',
+    title: 'Bail Consultation: Documents and First Steps',
+    excerpt:
+      'A calm framework for a bail consultation — what documents to bring, what not to do, and how to think about the immediate next steps.',
+    category: 'Criminal Law',
+    readTime: '6 min read',
+    publishedAt: '2026-05-14',
+    metaTitle: 'Bail Consultation in India — Documents and First Steps',
+    metaDescription:
+      'Practical guidance for a bail consultation — documents to prepare, immediate next steps, and what not to do in the first 24 hours.',
+    body: [
+      {
+        heading: 'No promises in the first hour',
+        paragraphs: [
+          'Bail is a judicial decision based on the facts, law, and the court\'s discretion. Anyone promising a guaranteed outcome before reading the papers is making a claim no advocate can responsibly make.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'agreement-drafting-why-proper-legal-review-matters',
+    title: 'Agreement Drafting: Why Proper Legal Review Matters',
+    excerpt:
+      'Why a structured pre-execution review on even a "simple" agreement is cheaper than the dispute that follows a missing clause.',
+    category: 'Corporate Law',
+    readTime: '5 min read',
+    publishedAt: '2026-05-18',
+    metaTitle: 'Why Legal Review of Agreements Matters Before Signing',
+    metaDescription:
+      'A practical case for getting agreements reviewed before signing — common pitfalls, missing clauses, and downstream cost of skipping review.',
+    body: [
+      {
+        heading: 'The cost asymmetry',
+        paragraphs: [
+          'A pre-execution review takes hours. A dispute caused by a missing protective clause can take months or years to resolve. The cost asymmetry alone justifies the review.',
+        ],
+      },
+    ],
+  },
+
+  // ── Existing loan / debt posts (rewritten under new category mapping) ──
   {
     slug: 'how-personal-loan-settlement-works-in-india',
     title: 'How Personal Loan Settlement Works in India',
     excerpt:
       'A grounded walkthrough of the personal loan settlement process — when it makes sense, what to expect, and what it cannot do.',
-    category: 'Loan Settlement',
+    category: 'Loan & Debt Support',
     readTime: '7 min read',
     publishedAt: '2026-02-12',
     metaTitle: 'How Personal Loan Settlement Works in India | Athena Legal',
@@ -26,7 +257,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'What "settlement" actually means',
         paragraphs: [
-          'Personal loan settlement is a negotiated arrangement between a borrower and the lender to close an outstanding loan at a reduced one-time payment, typically when the borrower is unable to continue regular EMIs and the lender prefers a partial recovery to a prolonged default.',
+          'Personal loan settlement is a negotiated arrangement between a borrower and the lender to close an outstanding loan at a reduced one-time payment, typically when the borrower is unable to continue regular EMIs.',
           'Settlement is not the same as loan closure. A closed loan reflects a fully repaid obligation; a settled loan reflects a discounted payoff and is reported as such to credit bureaus.',
         ],
       },
@@ -43,15 +274,9 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: 'What the process generally looks like',
-        paragraphs: [
-          'A responsible settlement process is documentation-led: a complete review of the loan agreement, statements, communications, and the borrower\'s financial position; a position paper that frames the hardship clearly; structured communication with the lender; and a careful review of any settlement letter that is finally issued.',
-        ],
-      },
-      {
         heading: 'What settlement cannot do',
         paragraphs: [
-          'Settlement does not erase a credit history. It does not guarantee future loan eligibility. It is not a tool to escape obligations that the borrower has the capacity to service. And no advisor — including us — can promise a specific settlement percentage in advance. Lender approval remains a discretionary decision.',
+          'Settlement does not erase a credit history. It does not guarantee future loan eligibility. It is not a tool to escape obligations that the borrower has the capacity to service. And no advisor can promise a specific settlement percentage in advance.',
         ],
       },
     ],
@@ -60,8 +285,8 @@ export const blogPosts: BlogPost[] = [
     slug: 'credit-card-settlement-process-benefits-credit-score-impact',
     title: 'Credit Card Settlement: Process, Benefits and Credit Score Impact',
     excerpt:
-      'The realistic case for and against credit card settlement, what the process looks like, and what borrowers should know about credit reporting.',
-    category: 'Credit Cards',
+      'The realistic case for and against credit card settlement, and what borrowers should know about how it shows up on credit reports.',
+    category: 'Loan & Debt Support',
     readTime: '6 min read',
     publishedAt: '2026-02-18',
     metaTitle: 'Credit Card Settlement: Process, Benefits, Credit Score',
@@ -75,15 +300,9 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: 'When settlement enters the conversation',
-        paragraphs: [
-          'Settlement typically becomes relevant only when the cardholder genuinely cannot clear the full outstanding and the account is already in a stressed status with the bank.',
-        ],
-      },
-      {
         heading: 'How the credit report reflects settlement',
         paragraphs: [
-          'A settled card account is generally reported with a "Settled" status to credit bureaus. That tag is visible to future lenders and influences underwriting. Reporting practices vary, and we always recommend obtaining a fresh bureau report after closure to confirm the actual reflection.',
+          'A settled card account is generally reported with a "Settled" status to credit bureaus. That tag is visible to future lenders and influences underwriting.',
         ],
       },
     ],
@@ -98,7 +317,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-03-04',
     metaTitle: 'Recovery Agent Harassment: What Borrowers Should Do',
     metaDescription:
-      'Step-by-step advisory guidance for borrowers facing recovery agent harassment, including documentation, escalation, and legal options.',
+      'Step-by-step advisory guidance for borrowers facing recovery agent harassment — documentation, escalation, and legal options.',
     body: [
       {
         heading: 'Recognise what crosses the line',
@@ -112,12 +331,6 @@ export const blogPosts: BlogPost[] = [
           'A documented record is the borrower\'s strongest asset. Call logs, screenshots, written summaries, and identification of any visiting agents should all be preserved.',
         ],
       },
-      {
-        heading: 'Use the right channel',
-        paragraphs: [
-          'Lenders maintain grievance redressal channels for precisely these matters. Regulatory channels exist for situations that go unresolved. The appropriate channel depends on the facts of the case and the institution involved.',
-        ],
-      },
     ],
   },
   {
@@ -125,7 +338,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Loan Settlement vs Loan Closure: Key Differences',
     excerpt:
       'Two outcomes that sound similar but mean very different things on a credit report and in future borrowing.',
-    category: 'Guides',
+    category: 'Loan & Debt Support',
     readTime: '5 min read',
     publishedAt: '2026-03-09',
     metaTitle: 'Loan Settlement vs Loan Closure — Key Differences Explained',
@@ -142,86 +355,6 @@ export const blogPosts: BlogPost[] = [
         heading: 'Settlement: a negotiated exit',
         paragraphs: [
           'Settlement means the lender has agreed to accept less than the full outstanding as a final payoff. This is reflected differently on the credit report and signals a different repayment history.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'what-happens-after-a-loan-default-legal-notice',
-    title: 'What Happens After a Loan Default Legal Notice?',
-    excerpt:
-      'The realistic sequence of events that can follow a loan default notice, and why the response window matters more than the notice itself.',
-    category: 'Legal Notices',
-    readTime: '6 min read',
-    publishedAt: '2026-03-15',
-    metaTitle: 'After a Loan Default Notice: What Borrowers Should Expect',
-    metaDescription:
-      'A grounded explanation of what typically follows a loan default legal notice in India and how borrowers should approach the response window.',
-    body: [
-      {
-        heading: 'A notice is not the end — it is a window',
-        paragraphs: [
-          'A notice creates a defined window for the borrower to respond, settle, or contest. The worst response is silence; the second worst is an informal, undocumented reply.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'documents-required-for-loan-settlement',
-    title: 'Documents Required for Loan Settlement',
-    excerpt:
-      'A checklist of documents that meaningful settlement advisory typically requires, and why each one matters.',
-    category: 'Guides',
-    readTime: '4 min read',
-    publishedAt: '2026-03-22',
-    metaTitle: 'Documents Required for Loan Settlement — Checklist',
-    metaDescription:
-      'A clear checklist of documents Athena Legal Solution LLP typically reviews when advising on loan settlement matters.',
-    body: [
-      {
-        heading: 'The core set',
-        paragraphs: [
-          'Most advisory engagements require the loan agreement, sanction letter, repayment schedule, recent statements, KYC, and any communication received from the lender.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'can-recovery-agents-call-family-members',
-    title: 'Can Recovery Agents Call Family Members?',
-    excerpt:
-      'A clear-eyed answer to one of the most common questions borrowers ask, and what to do if the line has been crossed.',
-    category: 'Borrower Rights',
-    readTime: '5 min read',
-    publishedAt: '2026-04-01',
-    metaTitle: 'Can Recovery Agents Call Family Members? — Borrower Guide',
-    metaDescription:
-      'Understand what is and is not acceptable when recovery agents contact family members, and how borrowers can respond.',
-    body: [
-      {
-        heading: 'The general principle',
-        paragraphs: [
-          'Recovery contact is generally meant for the borrower (and any co-borrower or guarantor on record), not for unrelated family members. Repeated, pressure-driven contact with uninvolved family members is typically not acceptable practice.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'how-to-handle-overdue-emi-pressure-legally',
-    title: 'How to Handle Overdue EMI Pressure Legally',
-    excerpt:
-      'When EMIs slip and the calls start, what borrowers can do — calmly, legally, and on the record.',
-    category: 'Borrower Rights',
-    readTime: '7 min read',
-    publishedAt: '2026-04-10',
-    metaTitle: 'Handling Overdue EMI Pressure — A Legal Advisory Guide',
-    metaDescription:
-      'Practical, legal-first guidance for borrowers facing overdue EMI pressure, lender escalation, and recovery calls.',
-    body: [
-      {
-        heading: 'Stay engaged, but stay on the record',
-        paragraphs: [
-          'Avoiding calls makes the situation harder. So does verbal commitments made under pressure. The right balance is documented engagement — written communication, controlled phone interactions, and clear timelines.',
         ],
       },
     ],

@@ -13,10 +13,10 @@ import {
 } from '@/components/Icons';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Contact Us — Book a Confidential Consultation',
+  title: 'Contact Us — Book a Legal Consultation in Delhi',
   description:
-    'Reach Athena Legal Solution LLP for confidential legal and financial advisory on loan settlement, credit card dues, recovery harassment, and legal notice matters.',
-  path: '/contact',
+    'Reach Athena Legal Solution LLP for confidential legal consultation across civil, criminal, family, property, corporate, loan settlement, recovery harassment, and other legal matters.',
+  path: '/contact-us',
 });
 
 export default function ContactPage() {
@@ -24,8 +24,8 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Book a Confidential Consultation"
-        subtitle="Share a few details and our team will reach out for a structured first conversation. No obligation, no judgement."
+        title="Book a Legal Consultation"
+        subtitle="Share a few details and our team will reach out for a structured first conversation. Confidential, no-obligation, and grounded in documentation."
         crumbs={[
           { label: 'Home', href: '/' },
           { label: 'Contact' },
@@ -35,11 +35,7 @@ export default function ContactPage() {
       <section className="bg-white py-14 md:py-20">
         <div className="mx-auto grid max-w-container gap-10 px-4 md:grid-cols-12 md:px-6">
           <div className="md:col-span-5">
-            <SectionHeader
-              align="left"
-              eyebrow="Direct channels"
-              title="Talk to Us"
-            />
+            <SectionHeader align="left" eyebrow="Direct channels" title="Talk to Us" />
             <p className="mt-4 text-sm text-navy/75">
               We prefer documented engagement — start a WhatsApp thread or send an email,
               and we will take it from there.
@@ -64,7 +60,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs uppercase tracking-widest text-navy/55">WhatsApp</p>
                   <a
-                    href={siteConfig.whatsappHref}
+                    href={siteConfig.whatsappPrefilled('General Legal Matter')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-heading text-lg text-navy hover:text-emerald-accent"
@@ -79,8 +75,11 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-widest text-navy/55">Email</p>
-                  <a href={siteConfig.emailHref} className="break-all font-heading text-lg text-navy hover:text-gold-dark">
+                  <a href={siteConfig.emailHref} className="break-all font-heading text-base text-navy hover:text-gold-dark">
                     {siteConfig.email}
+                  </a>
+                  <a href={siteConfig.altEmailHref} className="mt-1 block break-all text-sm text-navy/70 hover:text-gold-dark">
+                    {siteConfig.altEmail}
                   </a>
                 </div>
               </li>
@@ -91,8 +90,8 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs uppercase tracking-widest text-navy/55">Office</p>
                   <p className="font-heading text-base text-navy">
-                    {siteConfig.address.street}<br />
-                    {siteConfig.address.locality}, {siteConfig.address.region} {siteConfig.address.postalCode}
+                    {siteConfig.address.locality}, {siteConfig.address.sub}<br />
+                    {siteConfig.address.region} {siteConfig.address.postalCode}
                   </p>
                 </div>
               </li>
@@ -112,7 +111,8 @@ export default function ContactPage() {
             <div className="rounded-3xl border border-slate-soft bg-white p-6 shadow-premium md:p-8">
               <h2 className="font-heading text-2xl text-navy">Send a confidential request</h2>
               <p className="mt-2 text-sm text-navy/70">
-                We reply during working hours. For urgent matters, WhatsApp is fastest.
+                We reply during working hours ({siteConfig.hours}). For urgent matters,
+                WhatsApp is fastest.
               </p>
               <div className="mt-6">
                 <LeadForm />

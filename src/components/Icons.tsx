@@ -134,6 +134,97 @@ export const CheckIcon = (p: IconProps) => (
   </svg>
 );
 
+export const GavelIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M14 4l6 6-3 3-6-6 3-3z" />
+    <path d="M11 7l-7 7 3 3 7-7" />
+    <path d="M3 22h12" />
+  </svg>
+);
+
+export const FamilyIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="8" cy="7" r="3" />
+    <circle cx="16" cy="7" r="3" />
+    <path d="M2 21c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+    <path d="M14 17c.9-1.2 2.4-2 4-2 2.8 0 5 2.2 5 5" />
+  </svg>
+);
+
+export const HomeIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M3 11l9-7 9 7v9a2 2 0 01-2 2h-4v-7H9v7H5a2 2 0 01-2-2v-9z" />
+  </svg>
+);
+
+export const ShoppingBagIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M5 7h14l-1.4 12.1A2 2 0 0115.6 21H8.4a2 2 0 01-2-1.9L5 7z" />
+    <path d="M9 7V5a3 3 0 016 0v2" />
+  </svg>
+);
+
+export const BriefcaseIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="7" width="18" height="13" rx="2" />
+    <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18" />
+  </svg>
+);
+
+export const FileSignedIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z" />
+    <path d="M14 3v6h6" />
+    <path d="M8 16c1.5-2 3-2 4 0s2.5 2 4 0" />
+  </svg>
+);
+
+export const PenIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 19l7-7 3 3-7 7-3-3z" />
+    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+    <path d="M2 2l7.5 7.5" />
+    <circle cx="11" cy="11" r="2" />
+  </svg>
+);
+
+export const WorkersIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="9" cy="7" r="3" />
+    <path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+    <path d="M17 11a3 3 0 100-6 3 3 0 000 6z" />
+    <path d="M14 21c0-2.5 2-4.5 4.5-4.5S23 18.5 23 21" />
+  </svg>
+);
+
+export const CyberIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="4" width="18" height="13" rx="2" />
+    <path d="M8 21h8M12 17v4" />
+    <path d="M8 10l2 2-2 2M14 10l-2 2 2 2" />
+  </svg>
+);
+
+export const PracticeIconMap = {
+  scale: ScaleIcon,
+  gavel: GavelIcon,
+  family: FamilyIcon,
+  home: HomeIcon,
+  document: DocumentIcon,
+  shoppingBag: ShoppingBagIcon,
+  briefcase: BriefcaseIcon,
+  fileSigned: FileSignedIcon,
+  pen: PenIcon,
+  workers: WorkersIcon,
+  cyber: CyberIcon,
+  handshake: HandshakeIcon,
+  shield: ShieldIcon,
+  card: CardIcon,
+  phone: PhoneIcon,
+  building: BuildingIcon,
+  bank: BankIcon,
+} as const;
+
 export const ServiceIconMap = {
   shield: ShieldIcon,
   card: CardIcon,

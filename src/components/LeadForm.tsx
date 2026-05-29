@@ -2,26 +2,17 @@
 
 import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-
-const loanTypes = [
-  'Personal Loan',
-  'Credit Card',
-  'Business Loan',
-  'Home Loan',
-  'Auto Loan',
-  'Other',
-];
-
-const emiStatusOptions = [
-  'Regular',
-  'Delayed',
-  'Defaulted',
-  'Legal Notice Received',
-];
+import { caseTypeOptions } from '@/lib/practiceAreas';
 
 type FieldErrors = Partial<Record<string, string>>;
 
-export default function LeadForm({ compact = false }: { compact?: boolean }) {
+export default function LeadForm({
+  compact = false,
+  defaultCaseType,
+}: {
+  compact?: boolean;
+  defaultCaseType?: string;
+}) {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -67,10 +58,6 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Request failed');
-      if (typeof window !== 'undefined') {
-        // analytics placeholder
-        // window.dataLayer?.push({ event: 'lead_form_submit' });
-      }
       router.push('/thank-you');
     } catch {
       setServerError(
@@ -86,7 +73,7 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
   const errCls = 'mt-1 text-xs text-red-600';
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4" aria-label="Consultation request form">
+    <form onSubmit={onSubmit} noValidate className="space-y-4" aria-label="Legal consultation request form">
       {/* honeypot */}
       <input
         type="text"
@@ -122,62 +109,60 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="lf-loan" className={labelCls}>Loan Type</label>
-          <select id="lf-loan" name="loanType" className={inputCls} defaultValue="">
-            <option value="" disabled>Select</option>
-            {loanTypes.map((t) => <option key={t} value={t}>{t}</option>)}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="lf-bank" className={labelCls}>Bank / Lender</label>
-          <input id="lf-bank" name="bank" type="text" className={inputCls} placeholder="e.g. HDFC, ICICI, Bajaj" />
-        </div>
+      <div>
+        <label htmlFor="lf-case" className={labelCls}>Case Type *</label>
+        <select
+          id="lf-case"
+          name="caseType"
+          required
+          className={inputCls}
+          defaultValue={defaultCaseType ?? ''}
+        >
+          <option value="" disabled>Select case type</option>
+          {caseTypeOptions.map((t) => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="lf-amount" className={labelCls}>Approx. Outstanding (₹)</label>
-          <input id="lf-amount" name="amount" type="text" inputMode="numeric" className={inputCls} placeholder="e.g. 250000" />
-        </div>
-        <div>
-          <label htmlFor="lf-status" className={labelCls}>EMI Status</label>
-          <select id="lf-status" name="emiStatus" className={inputCls} defaultValue="">
-            <option value="" disabled>Select</option>
-            {emiStatusOptions.map((s) => <option key={s} value={s}>{s}</option>)}
+          <label htmlFor="lf-notice" className={labelCls}>Notice Received?</label>
+          <select id="lf-notice" name="noticeReceived" className={inputCls} defaultValue="">
+            <option value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="Not sure">Not sure</option>
           </select>
         </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="lf-time" className={labelCls}>Preferred Contact Time</label>
           <select id="lf-time" name="contactTime" className={inputCls} defaultValue="">
-            <option value="" disabled>Select</option>
-            <option>Morning (10 AM – 1 PM)</option>
-            <option>Afternoon (1 PM – 4 PM)</option>
-            <option>Evening (4 PM – 7 PM)</option>
+            <option value="">Any time</option>
+            <option>Morning (9 AM – 12 PM)</option>
+            <option>Afternoon (12 PM – 3 PM)</option>
+            <option>Evening (3 PM – 5 PM)</option>
           </select>
         </div>
-        {!compact && (
-          <div>
-            <label htmlFor="lf-source" className={labelCls}>How did you hear about us?</label>
-            <input id="lf-source" name="source" type="text" className={inputCls} placeholder="Google, Referral, Social…" />
-          </div>
-        )}
       </div>
 
       <div>
-        <label htmlFor="lf-message" className={labelCls}>Brief Message</label>
-        <textarea id="lf-message" name="message" rows={compact ? 3 : 4} className={inputCls} placeholder="Share a short description of your situation." />
+        <label htmlFor="lf-message" className={labelCls}>Brief Case Details</label>
+        <textarea
+          id="lf-message"
+          name="message"
+          rows={compact ? 3 : 4}
+          className={inputCls}
+          placeholder="A short description of your situation — facts, dates, lender/party names, etc."
+        />
       </div>
 
       <label className="flex items-start gap-3 text-sm text-navy/80">
         <input type="checkbox" name="consent" className="mt-1 h-4 w-4 rounded border-slate-soft text-gold focus:ring-gold" />
         <span>
-          I consent to be contacted by Athena Legal Solution LLP regarding my enquiry. I
-          understand outcomes depend on case review and lender approval.
+          I agree to be contacted by Athena Legal Solution LLP regarding my inquiry. I
+          understand outcomes depend on facts, documents, applicable law, and the
+          discretion of the competent court / authority / lender.
         </span>
       </label>
       {errors.consent && <p className={errCls}>{errors.consent}</p>}
@@ -194,7 +179,7 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
         data-cta="lead-form-submit"
         className="inline-flex w-full items-center justify-center rounded-full bg-navy-gradient px-6 py-3.5 text-sm font-semibold text-white shadow-premium transition hover:opacity-95 disabled:opacity-60 sm:w-auto"
       >
-        {submitting ? 'Submitting…' : 'Request Confidential Consultation'}
+        {submitting ? 'Submitting…' : 'Book Legal Consultation'}
       </button>
     </form>
   );
