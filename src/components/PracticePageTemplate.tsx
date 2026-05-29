@@ -61,8 +61,8 @@ export default function PracticePageTemplate({ practice }: { practice: Practice 
       </PageHero>
 
       <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto grid max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
-          <div className="md:col-span-8">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
+          <div className="min-w-0 md:col-span-8">
             <article className="prose-athena">
               <h2>Who this service is for</h2>
               <ul>
@@ -105,7 +105,7 @@ export default function PracticePageTemplate({ practice }: { practice: Practice 
             )}
           </div>
 
-          <aside className="md:col-span-4">
+          <aside className="min-w-0 md:col-span-4">
             <div className="sticky top-24 space-y-6">
               <div className="rounded-2xl border border-slate-soft bg-white p-6 shadow-sm">
                 <h3 className="font-heading text-lg text-navy">Talk to our team</h3>
@@ -169,7 +169,7 @@ export default function PracticePageTemplate({ practice }: { practice: Practice 
         <section className="bg-white py-14 md:py-20">
           <div className="mx-auto max-w-container px-4 md:px-6">
             <SectionHeader eyebrow="Explore" title="Related Areas" />
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
               {related.map((r) => (
                 <PracticeCard key={r.slug} practice={r} />
               ))}

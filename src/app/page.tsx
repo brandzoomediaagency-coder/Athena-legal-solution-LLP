@@ -98,8 +98,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-hero-pattern" aria-hidden="true" />
         <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:48px_48px]" aria-hidden="true" />
 
-        <div className="mx-auto grid max-w-container gap-12 px-4 pb-20 pt-14 md:grid-cols-12 md:px-6 md:pb-28 md:pt-20 lg:gap-16">
-          <div className="md:col-span-7">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-12 px-4 pb-20 pt-14 md:grid-cols-12 md:px-6 md:pb-28 md:pt-20 lg:gap-16">
+          <div className="min-w-0 md:col-span-7">
             <span className="inline-block rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
               Legal Solution Firm · Delhi NCR
             </span>
@@ -167,7 +167,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative md:col-span-5">
+          <div className="relative min-w-0 md:col-span-5">
             {/* Background orbs (decoration only) */}
             <div className="orb pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-gold/20 blur-3xl" aria-hidden="true" />
             <div className="orb pointer-events-none absolute -bottom-12 -right-8 h-44 w-44 rounded-full bg-emerald-accent/20 blur-3xl" aria-hidden="true" />
@@ -245,7 +245,7 @@ export default function HomePage() {
               subtitle="Twelve focused legal practice areas, plus a dedicated loan & debt support track — handled with documentation discipline."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {practiceAreasMain.map((p, i) => (
               <Reveal key={p.slug} delay={((i % 3) * 100) as 0 | 100 | 200}>
                 <PracticeCard practice={p} />
@@ -271,7 +271,7 @@ export default function HomePage() {
             title="Why Clients Choose Athena Legal Solution LLP"
             subtitle="A legal-first advisory approach built around documentation, process discipline, and realistic guidance."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {whyChoose.map((w, i) => (
               <Reveal key={w.title} delay={((i % 4) * 100) as 0 | 100 | 200 | 300}>
                 <div className="h-full rounded-2xl border border-slate-soft bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-gold hover:shadow-premium">
@@ -312,7 +312,7 @@ export default function HomePage() {
               subtitle="A dedicated track for borrowers and businesses dealing with overdue EMIs, credit card dues, recovery harassment, and multi-lender debt resolution."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {loanDebtServices.map((p, i) => (
               <Reveal key={p.slug} delay={((i % 3) * 100) as 0 | 100 | 200}>
                 <PracticeCard practice={p} />
@@ -327,8 +327,8 @@ export default function HomePage() {
 
       {/* Lead form */}
       <section id="book" className="bg-navy py-16 text-white md:py-24">
-        <div className="mx-auto grid max-w-container gap-10 px-4 md:grid-cols-12 md:px-6">
-          <div className="md:col-span-5">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-10 px-4 md:grid-cols-12 md:px-6">
+          <div className="min-w-0 md:col-span-5">
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
               Need legal guidance?
             </span>
@@ -367,7 +367,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="md:col-span-7">
+          <div className="min-w-0 md:col-span-7">
             <div className="rounded-3xl bg-white p-6 shadow-premium md:p-8">
               <LeadForm />
             </div>
@@ -394,7 +394,7 @@ export default function HomePage() {
       <section className="bg-slate-soft/60 py-16 md:py-20">
         <div className="mx-auto max-w-container px-4 md:px-6">
           <SectionHeader eyebrow="Quick Answers" title="About Athena Legal Solution LLP" />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {[
               {
                 q: 'What is Athena Legal Solution LLP?',

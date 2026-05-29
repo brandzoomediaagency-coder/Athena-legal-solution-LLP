@@ -46,8 +46,8 @@ export default function AboutPage() {
       />
 
       <section className="bg-white py-16 md:py-24">
-        <div className="mx-auto grid max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
-          <div className="md:col-span-7">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
+          <div className="min-w-0 md:col-span-7">
             <div className="prose-athena">
               <h2>Who we are</h2>
               <p>
@@ -94,7 +94,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <aside className="md:col-span-5">
+          <aside className="min-w-0 md:col-span-5">
             <div className="rounded-3xl bg-navy p-6 text-white shadow-premium md:p-8">
               <h3 className="font-heading text-xl">Our values</h3>
               <ul className="mt-5 space-y-4">
@@ -126,7 +126,7 @@ export default function AboutPage() {
             title="Get in Touch"
             subtitle="Confidential consultation, structured guidance, and a clear next step."
           />
-          <div className="mt-10 grid gap-4 text-center md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-4 text-center sm:grid-cols-2 md:grid-cols-3">
             <div className="rounded-2xl border border-slate-soft bg-white p-6">
               <p className="text-xs uppercase tracking-widest text-gold-dark">Phone</p>
               <a href={siteConfig.phoneHref} className="mt-2 block font-heading text-lg text-navy">{siteConfig.phone}</a>

@@ -54,8 +54,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </PageHero>
 
       <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto grid max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
-          <article className="prose-athena md:col-span-8">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-12 px-4 md:grid-cols-12 md:px-6">
+          <article className="prose-athena min-w-0 md:col-span-8">
             {post.body.map((sec, i) => (
               <section key={i}>
                 <h2>{sec.heading}</h2>
@@ -81,7 +81,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
           </article>
 
-          <aside className="md:col-span-4">
+          <aside className="min-w-0 md:col-span-4">
             <div className="sticky top-24 space-y-6">
               <div className="rounded-2xl border border-slate-soft bg-navy p-6 text-white">
                 <h3 className="font-heading text-lg">Need a confidential review?</h3>
@@ -115,7 +115,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <section className="bg-slate-soft/60 py-14 md:py-20">
         <div className="mx-auto max-w-container px-4 md:px-6">
           <SectionHeader eyebrow="More from the blog" title="Continue reading" />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {related.map((r) => (
               <Link
                 key={r.slug}

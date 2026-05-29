@@ -8,8 +8,8 @@ export default function Footer() {
   return (
     <footer className="bg-navy text-white/80">
       <div className="mx-auto max-w-container px-4 py-14 md:px-6">
-        <div className="grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
+          <div className="min-w-0 md:col-span-4">
             <Logo variant="light" size="lg" />
             <p className="mt-4 text-sm leading-relaxed text-white/70">
               {siteConfig.tagline}. Comprehensive legal consultation, documentation support,
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="min-w-0 md:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
               Practice Areas
             </h3>
@@ -52,7 +52,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="min-w-0 md:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
               Loan & Debt
             </h3>
@@ -67,7 +67,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="min-w-0 md:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
               Contact
             </h3>

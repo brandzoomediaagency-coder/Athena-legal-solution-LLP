@@ -33,8 +33,8 @@ export default function ContactPage() {
       />
 
       <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto grid max-w-container gap-10 px-4 md:grid-cols-12 md:px-6">
-          <div className="md:col-span-5">
+        <div className="mx-auto grid grid-cols-1 max-w-container gap-10 px-4 md:grid-cols-12 md:px-6">
+          <div className="min-w-0 md:col-span-5">
             <SectionHeader align="left" eyebrow="Direct channels" title="Talk to Us" />
             <p className="mt-4 text-sm text-navy/75">
               We prefer documented engagement — start a WhatsApp thread or send an email,
@@ -107,7 +107,7 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div className="md:col-span-7">
+          <div className="min-w-0 md:col-span-7">
             <div className="rounded-3xl border border-slate-soft bg-white p-6 shadow-premium md:p-8">
               <h2 className="font-heading text-2xl text-navy">Send a confidential request</h2>
               <p className="mt-2 text-sm text-navy/70">
