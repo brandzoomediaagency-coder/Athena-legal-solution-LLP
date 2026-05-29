@@ -145,6 +145,24 @@ export default function HomePage() {
               recovery harassment, and financial dispute matters — our team helps you take
               the right next step with clarity.
             </p>
+
+            {/* Mobile-only: horizontal scrolling category pills */}
+            <div
+              className="mt-7 -mx-4 overflow-x-auto pb-2 md:hidden"
+              aria-label="Practice area shortcuts"
+            >
+              <div className="flex w-max gap-2 px-4">
+                {practiceAreasMain.slice(0, 8).map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={p.path}
+                    className="shrink-0 rounded-full border border-gold/30 bg-gold/5 px-3.5 py-1.5 text-xs font-medium text-gold hover:bg-gold/15"
+                  >
+                    {p.shortTitle}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="relative md:col-span-5">
@@ -181,7 +199,7 @@ export default function HomePage() {
                 Request Case Review
               </Link>
 
-              {/* Floating mini-cards with subtle animation */}
+              {/* Floating mini-cards (desktop) — subtle animation */}
               <div className="float-y pointer-events-none absolute -bottom-5 -left-5 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
                 <span className="block font-semibold text-gold">Civil &amp; Criminal</span>
                 <span className="text-white/60">Consultation · Drafting</span>
@@ -193,6 +211,22 @@ export default function HomePage() {
               <div className="float-y-fast pointer-events-none absolute -right-3 -bottom-6 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
                 <span className="block font-semibold text-emerald-accent">Loan Settlement</span>
                 <span className="text-white/60">Recovery Support</span>
+              </div>
+            </div>
+
+            {/* Mobile-only mini-cards (replaces the floating ones that are desktop-only) */}
+            <div className="mt-4 grid grid-cols-3 gap-2 md:hidden">
+              <div className="float-y rounded-xl border border-white/15 bg-navy/80 px-2.5 py-2 text-center">
+                <span className="block text-[10px] font-semibold uppercase tracking-wider text-gold">Civil</span>
+                <span className="block text-[10px] text-white/55">&amp; Criminal</span>
+              </div>
+              <div className="float-y-slow rounded-xl border border-white/15 bg-navy/80 px-2.5 py-2 text-center">
+                <span className="block text-[10px] font-semibold uppercase tracking-wider text-gold">Family</span>
+                <span className="block text-[10px] text-white/55">&amp; Property</span>
+              </div>
+              <div className="float-y-fast rounded-xl border border-white/15 bg-navy/80 px-2.5 py-2 text-center">
+                <span className="block text-[10px] font-semibold uppercase tracking-wider text-emerald-accent">Loan</span>
+                <span className="block text-[10px] text-white/55">Settlement</span>
               </div>
             </div>
           </div>

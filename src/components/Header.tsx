@@ -176,7 +176,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-white xl:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gold/40 bg-gold/10 text-gold transition hover:bg-gold/20 xl:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-nav"
