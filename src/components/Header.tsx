@@ -201,7 +201,8 @@ export default function Header() {
           onClick={() => setOpen(false)}
         />
         <div
-          className={`absolute right-0 top-0 flex h-full w-[92%] max-w-sm flex-col overflow-y-auto bg-navy-gradient shadow-premium ring-1 ring-white/10 transition-transform duration-300 ease-out ${
+          style={{ backgroundColor: '#061A2B' }}
+          className={`absolute right-0 top-0 flex h-full w-[92%] max-w-sm flex-col overflow-y-auto bg-navy bg-navy-gradient shadow-premium ring-1 ring-white/10 transition-transform duration-300 ease-out ${
             open ? 'translate-x-0' : 'translate-x-full'
           }`}
         >

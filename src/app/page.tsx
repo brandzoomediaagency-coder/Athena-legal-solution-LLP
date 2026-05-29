@@ -103,7 +103,7 @@ export default function HomePage() {
             <span className="inline-block rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
               Legal Solution Firm · Delhi NCR
             </span>
-            <h1 className="mt-5 font-heading text-4xl leading-tight md:text-5xl lg:text-6xl">
+            <h1 className="mt-5 font-heading text-[2rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl md:leading-tight">
               Comprehensive Legal Solutions for{' '}
               <span className="bg-gold-gradient bg-clip-text text-transparent">Individuals, Families &amp; Businesses</span>
             </h1>
@@ -148,14 +148,16 @@ export default function HomePage() {
 
             {/* Mobile-only: horizontal scrolling category pills */}
             <div
-              className="mt-7 -mx-4 overflow-x-auto pb-2 md:hidden"
+              className="mt-7 -mx-4 overflow-x-auto pb-2 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               aria-label="Practice area shortcuts"
+              style={{ scrollSnapType: 'x mandatory' }}
             >
               <div className="flex w-max gap-2 px-4">
                 {practiceAreasMain.slice(0, 8).map((p) => (
                   <Link
                     key={p.slug}
                     href={p.path}
+                    style={{ scrollSnapAlign: 'start' }}
                     className="shrink-0 rounded-full border border-gold/30 bg-gold/5 px-3.5 py-1.5 text-xs font-medium text-gold hover:bg-gold/15"
                   >
                     {p.shortTitle}
