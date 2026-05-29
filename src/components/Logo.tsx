@@ -3,57 +3,31 @@ import Link from 'next/link';
 
 type Props = {
   variant?: 'light' | 'dark';
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  withWordmark?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   href?: string | null;
   className?: string;
 };
 
-const markSize = {
-  xs: 'h-8 w-8',
-  sm: 'h-10 w-10',
-  md: 'h-12 w-12 md:h-14 md:w-14',
-  lg: 'h-14 w-14 md:h-16 md:w-16',
-} as const;
-
-const wordmarkSize = {
-  xs: { name: 'text-[13px]', sub: 'text-[9px] tracking-[0.18em]' },
-  sm: { name: 'text-sm md:text-base', sub: 'text-[10px] tracking-[0.2em]' },
-  md: { name: 'text-base md:text-lg', sub: 'text-[10px] md:text-[11px] tracking-[0.18em]' },
-  lg: { name: 'text-lg md:text-xl', sub: 'text-[11px] md:text-[12px] tracking-[0.2em]' },
+const heightClass = {
+  sm: 'h-10 md:h-11',
+  md: 'h-12 md:h-14',
+  lg: 'h-14 md:h-16',
 } as const;
 
 export default function Logo({
-  variant = 'light',
   size = 'md',
-  withWordmark = true,
   href = '/',
   className = '',
 }: Props) {
-  const textColor = variant === 'light' ? 'text-white' : 'text-navy';
-  const sub = wordmarkSize[size];
-
   const inner = (
-    <span className={`flex items-center gap-3 ${className}`}>
-      <span className={`relative ${markSize[size]} shrink-0`}>
-        <Image
-          src="/logo.svg"
-          alt="Athena Legal Solution LLP logo"
-          fill
-          sizes="(min-width: 768px) 56px, 44px"
-          priority
-          className="object-contain"
-        />
-      </span>
-      {withWordmark && (
-        <span className="flex flex-col leading-tight">
-          <span className={`font-heading font-semibold ${textColor} ${sub.name}`}>
-            Athena Legal Solution
-          </span>
-          <span className={`uppercase text-gold ${sub.sub}`}>LLP</span>
-        </span>
-      )}
-    </span>
+    <Image
+      src="/logo.svg"
+      alt="Athena Legal Solution LLP"
+      width={180}
+      height={180}
+      priority
+      className={`${heightClass[size]} w-auto object-contain ${className}`}
+    />
   );
 
   if (!href) return inner;
@@ -70,7 +44,7 @@ export default function Logo({
 
 /**
  * Brand-mark only (inline SVG fallback) — used in places where the heavy
- * SVG image isn't ideal (hero glass card, transactional pages, OG image, etc.)
+ * SVG image isn't ideal (hero glass card, OG image, transactional pages).
  */
 export function LogoMark({
   size = 44,

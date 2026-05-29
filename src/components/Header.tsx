@@ -208,7 +208,7 @@ export default function Header() {
         >
           {/* Top: logo + close */}
           <div className="flex items-center justify-between border-b border-white/10 bg-navy/70 px-4 py-4">
-            <Logo variant="light" size="sm" href={null} />
+            <Logo size="md" href={null} />
             <button
               onClick={() => setOpen(false)}
               aria-label="Close menu"
