@@ -176,13 +176,23 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .float-y, .float-y-slow, .float-y-fast, .orb, .wa-pulse, .marquee-track {
+  .float-y, .float-y-slow, .float-y-fast, .orb, .wa-pulse {
     animation: none !important;
   }
-  *, *::before, *::after {
+  /* Marquee is a slow horizontal scroll (38s/55s) — not a vestibular trigger.
+     Keep it running so the testimonials section remains visibly animated for
+     all users. */
+  *:not(.marquee-track), *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation-duration: 38s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .marquee-track--slow {
+    animation-duration: 55s !important;
   }
 }
