@@ -66,13 +66,8 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
-  icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/logo.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/logo.png',
-  },
+  // Favicon + apple-touch-icon are auto-generated via app/icon.tsx and app/apple-icon.tsx.
+  // An SVG fallback is also provided via public/favicon.svg.
   manifest: '/site.webmanifest',
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Logo from './Logo';
 import { siteConfig } from '@/lib/site';
 import { practiceAreasMain, loanDebtServices } from '@/lib/practiceAreas';
 
@@ -10,13 +10,7 @@ export default function Footer() {
       <div className="mx-auto max-w-container px-4 py-14 md:px-6">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Link href="/" className="flex items-center gap-3" aria-label="Athena Legal Solution LLP">
-              <Image src="/logo.svg" alt="Athena Legal Solution LLP" width={48} height={48} />
-              <span className="flex flex-col leading-tight">
-                <span className="font-heading text-lg text-white">Athena Legal Solution</span>
-                <span className="text-[11px] uppercase tracking-[0.18em] text-gold">LLP</span>
-              </span>
-            </Link>
+            <Logo variant="light" size="lg" />
             <p className="mt-4 text-sm leading-relaxed text-white/70">
               {siteConfig.tagline}. Comprehensive legal consultation, documentation support,
               dispute resolution guidance, and financial legal advisory for individuals,

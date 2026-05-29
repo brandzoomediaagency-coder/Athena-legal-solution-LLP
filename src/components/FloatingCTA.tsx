@@ -5,21 +5,25 @@ import { PhoneIcon, WhatsAppIcon } from './Icons';
 export default function FloatingCTA() {
   return (
     <>
-      {/* Floating WhatsApp (all viewports) */}
+      {/* Floating WhatsApp (all viewports) — sits above mobile sticky bar */}
       <a
-        href={siteConfig.whatsappHref}
+        href={siteConfig.whatsappPrefilled('General Legal Matter')}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
         data-cta="whatsapp-floating"
-        className="fixed bottom-20 right-4 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-accent text-white shadow-premium transition hover:scale-105 md:bottom-6 md:right-6 md:h-14 md:w-14"
+        className="wa-pulse fixed bottom-[76px] right-4 z-40 inline-flex items-center justify-center rounded-full bg-emerald-accent text-white shadow-premium transition hover:scale-105 md:bottom-6 md:right-6"
+        style={{ width: 52, height: 52 }}
       >
         <WhatsAppIcon className="h-6 w-6 md:h-7 md:w-7" />
       </a>
 
       {/* Sticky bottom CTA bar (mobile only) */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-navy/95 backdrop-blur md:hidden">
-        <div className="grid grid-cols-3 divide-x divide-white/10">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-navy/95 shadow-[0_-10px_30px_-10px_rgba(0,0,0,0.4)] backdrop-blur md:hidden">
+        <div
+          className="grid grid-cols-3 divide-x divide-white/10"
+          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        >
           <a
             href={siteConfig.phoneHref}
             data-cta="call-mobile-sticky"
@@ -30,7 +34,7 @@ export default function FloatingCTA() {
             Call
           </a>
           <a
-            href={siteConfig.whatsappHref}
+            href={siteConfig.whatsappPrefilled('General Legal Matter')}
             target="_blank"
             rel="noopener noreferrer"
             data-cta="whatsapp-mobile-sticky"
@@ -41,7 +45,7 @@ export default function FloatingCTA() {
             WhatsApp
           </a>
           <Link
-            href="/contact"
+            href="/contact-us"
             data-cta="book-mobile-sticky"
             className="flex items-center justify-center bg-gold-gradient py-3 text-sm font-semibold text-navy"
           >

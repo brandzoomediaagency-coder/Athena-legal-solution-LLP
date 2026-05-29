@@ -22,10 +22,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Padding for sticky mobile CTA */
+/* Padding for sticky mobile CTA + safe area */
 @media (max-width: 767px) {
   body {
-    padding-bottom: 60px;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -89,23 +89,87 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Animation utility */
+/* Animation utility — scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  animation: revealUp 0.7s ease-out forwards;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
 }
-@keyframes revealUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* Stagger children when on .reveal-group with delay variables */
+.reveal[data-delay="100"] { transition-delay: 100ms; }
+.reveal[data-delay="200"] { transition-delay: 200ms; }
+.reveal[data-delay="300"] { transition-delay: 300ms; }
+.reveal[data-delay="400"] { transition-delay: 400ms; }
+.reveal[data-delay="500"] { transition-delay: 500ms; }
+
+/* Hero floating cards — gentle vertical drift */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-y { animation: floatY 6s ease-in-out infinite; }
+.float-y-slow { animation: floatY 8s ease-in-out infinite; animation-delay: -2s; }
+.float-y-fast { animation: floatY 5s ease-in-out infinite; animation-delay: -1s; }
+
+/* Background orbs — slow pan */
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -16px) scale(1.05); }
+}
+.orb { animation: orbFloat 14s ease-in-out infinite; }
+
+/* WhatsApp pulse ring */
+@keyframes wapulse {
+  0% { box-shadow: 0 0 0 0 rgba(12, 124, 89, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(12, 124, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(12, 124, 89, 0); }
+}
+.wa-pulse { animation: wapulse 2.2s ease-out infinite; }
+
+/* CTA shine */
+@keyframes shine {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+.btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 35%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: translateX(-120%);
+  z-index: 1;
+  pointer-events: none;
+}
+.btn-shine:hover::after { animation: shine 1.1s ease-out forwards; }
+
+/* Marquee */
+@keyframes marqueeX {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeX 38s linear infinite;
+}
+.marquee-track--slow { animation-duration: 55s; }
+.marquee-track--reverse { animation-direction: reverse; }
+.marquee-container:hover .marquee-track { animation-play-state: paused; }
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .float-y, .float-y-slow, .float-y-fast, .orb, .wa-pulse, .marquee-track {
+    animation: none !important;
+  }
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

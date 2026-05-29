@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { siteConfig, trustMicrocopy } from '@/lib/site';
 import { practiceAreasMain, loanDebtServices } from '@/lib/practiceAreas';
@@ -8,6 +7,9 @@ import ProcessTimeline from '@/components/ProcessTimeline';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/components/LeadForm';
 import SectionHeader from '@/components/SectionHeader';
+import Reveal from '@/components/Reveal';
+import TestimonialsMarquee from '@/components/TestimonialsMarquee';
+import { LogoMark } from '@/components/Logo';
 import { FAQLd } from '@/components/SchemaJsonLd';
 import {
   CheckIcon,
@@ -115,7 +117,7 @@ export default function HomePage() {
               <Link
                 href="/contact-us"
                 data-cta="hero-primary"
-                className="rounded-full bg-gold-gradient px-6 py-3.5 text-sm font-semibold text-navy shadow-gold transition hover:opacity-95"
+                className="btn-shine rounded-full bg-gold-gradient px-6 py-3.5 text-sm font-semibold text-navy shadow-gold transition hover:opacity-95"
               >
                 Book Legal Consultation
               </Link>
@@ -145,16 +147,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="md:col-span-5">
+          <div className="relative md:col-span-5">
+            {/* Background orbs (decoration only) */}
+            <div className="orb pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-gold/20 blur-3xl" aria-hidden="true" />
+            <div className="orb pointer-events-none absolute -bottom-12 -right-8 h-44 w-44 rounded-full bg-emerald-accent/20 blur-3xl" aria-hidden="true" />
+
             <div className="glass-card relative rounded-3xl p-6 shadow-premium md:p-8">
               <div className="flex items-center gap-3">
-                <Image
-                  src="/logo.svg"
-                  alt="Athena Legal Solution LLP"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12"
-                />
+                <LogoMark size={48} variant="light" />
                 <div>
                   <p className="font-heading text-lg text-white">Confidential Case Review</p>
                   <p className="text-xs text-white/65">No obligation · Pan-India</p>
@@ -176,20 +176,21 @@ export default function HomePage() {
               </ul>
               <Link
                 href="/contact-us"
-                className="mt-6 block rounded-full bg-white px-5 py-3 text-center text-sm font-semibold text-navy shadow-sm hover:opacity-95"
+                className="btn-shine mt-6 block rounded-full bg-white px-5 py-3 text-center text-sm font-semibold text-navy shadow-sm hover:opacity-95"
               >
                 Request Case Review
               </Link>
 
-              <div className="pointer-events-none absolute -bottom-5 -left-5 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
+              {/* Floating mini-cards with subtle animation */}
+              <div className="float-y pointer-events-none absolute -bottom-5 -left-5 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
                 <span className="block font-semibold text-gold">Civil &amp; Criminal</span>
                 <span className="text-white/60">Consultation · Drafting</span>
               </div>
-              <div className="pointer-events-none absolute -right-4 top-10 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
+              <div className="float-y-slow pointer-events-none absolute -right-4 top-10 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
                 <span className="block font-semibold text-gold">Family &amp; Property</span>
                 <span className="text-white/60">Dispute Support</span>
               </div>
-              <div className="pointer-events-none absolute -right-3 -bottom-6 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
+              <div className="float-y-fast pointer-events-none absolute -right-3 -bottom-6 hidden rounded-2xl border border-white/15 bg-navy/90 px-4 py-3 text-xs text-white shadow-premium md:block">
                 <span className="block font-semibold text-emerald-accent">Loan Settlement</span>
                 <span className="text-white/60">Recovery Support</span>
               </div>
@@ -201,14 +202,18 @@ export default function HomePage() {
       {/* Practice Areas */}
       <section className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-container px-4 md:px-6">
-          <SectionHeader
-            eyebrow="Practice Areas"
-            title="Where Athena Legal Solution LLP Provides Consultation"
-            subtitle="Twelve focused legal practice areas, plus a dedicated loan & debt support track — handled with documentation discipline."
-          />
+          <Reveal>
+            <SectionHeader
+              eyebrow="Practice Areas"
+              title="Where Athena Legal Solution LLP Provides Consultation"
+              subtitle="Twelve focused legal practice areas, plus a dedicated loan & debt support track — handled with documentation discipline."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {practiceAreasMain.map((p) => (
-              <PracticeCard key={p.slug} practice={p} />
+            {practiceAreasMain.map((p, i) => (
+              <Reveal key={p.slug} delay={((i % 3) * 100) as 0 | 100 | 200}>
+                <PracticeCard practice={p} />
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -231,14 +236,16 @@ export default function HomePage() {
             subtitle="A legal-first advisory approach built around documentation, process discipline, and realistic guidance."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {whyChoose.map((w) => (
-              <div key={w.title} className="rounded-2xl border border-slate-soft bg-white p-6 shadow-sm">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy text-gold">
-                  <w.icon className="h-6 w-6" />
+            {whyChoose.map((w, i) => (
+              <Reveal key={w.title} delay={((i % 4) * 100) as 0 | 100 | 200 | 300}>
+                <div className="h-full rounded-2xl border border-slate-soft bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-gold hover:shadow-premium">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy text-gold">
+                    <w.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-4 font-heading text-lg text-navy">{w.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy/70">{w.text}</p>
                 </div>
-                <h3 className="mt-4 font-heading text-lg text-navy">{w.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy/70">{w.text}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -262,59 +269,25 @@ export default function HomePage() {
       {/* Loan & Debt Support — kept prominent */}
       <section className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-container px-4 md:px-6">
-          <SectionHeader
-            eyebrow="Legal & Financial Support"
-            title="Loan, Card, Recovery & Debt Resolution Advisory"
-            subtitle="A dedicated track for borrowers and businesses dealing with overdue EMIs, credit card dues, recovery harassment, and multi-lender debt resolution."
-          />
+          <Reveal>
+            <SectionHeader
+              eyebrow="Legal & Financial Support"
+              title="Loan, Card, Recovery & Debt Resolution Advisory"
+              subtitle="A dedicated track for borrowers and businesses dealing with overdue EMIs, credit card dues, recovery harassment, and multi-lender debt resolution."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {loanDebtServices.map((p) => (
-              <PracticeCard key={p.slug} practice={p} />
+            {loanDebtServices.map((p, i) => (
+              <Reveal key={p.slug} delay={((i % 3) * 100) as 0 | 100 | 200}>
+                <PracticeCard practice={p} />
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Trust strip */}
-      <section className="bg-slate-soft/50 py-16 md:py-20">
-        <div className="mx-auto max-w-container px-4 md:px-6">
-          <SectionHeader
-            eyebrow="Client Experience"
-            title="The Kind of Outcomes Clients Talk About"
-            subtitle="Representative situations and what changed after a structured legal engagement. Names and identifying details are kept confidential."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                role: 'Salaried Professional',
-                quote:
-                  '"I was getting calls every few hours from a lender. The team helped me put everything in writing and gave me a structured plan."',
-              },
-              {
-                role: 'MSME Owner',
-                quote:
-                  '"A vendor dispute had been stuck for months. A measured legal notice and a clean documentation trail moved the conversation."',
-              },
-              {
-                role: 'Property Buyer',
-                quote:
-                  '"I almost signed an agreement that had two clauses I didn\'t understand. The review caught both."',
-              },
-            ].map((t) => (
-              <figure key={t.role} className="rounded-2xl border border-slate-soft bg-white p-6 shadow-sm">
-                <blockquote className="text-sm leading-relaxed text-navy/80">{t.quote}</blockquote>
-                <figcaption className="mt-4 text-xs font-semibold uppercase tracking-widest text-gold-dark">
-                  {t.role}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-xs text-navy/55">
-            Representative scenarios. Outcomes depend on facts, documents, applicable law,
-            and authority / court / lender approval.
-          </p>
-        </div>
-      </section>
+      {/* Testimonials marquee — replaces static trust strip */}
+      <TestimonialsMarquee />
 
       {/* Lead form */}
       <section id="book" className="bg-navy py-16 text-white md:py-24">
