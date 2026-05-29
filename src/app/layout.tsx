@@ -70,7 +70,9 @@ export const metadata: Metadata = {
   // An SVG fallback is also provided via public/favicon.svg.
   manifest: '/site.webmanifest',
   verification: {
-    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    google:
+      process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
+      '_AOo-TXbvrurlR7oicgG4uAbuLJ6ayHDcW-XIcvH4nM',
   },
 };
 
