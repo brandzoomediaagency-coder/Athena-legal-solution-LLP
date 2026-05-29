@@ -83,7 +83,7 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-CP1T6RM078';
   const metaPixel = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-56SQRDKN';
   return (
